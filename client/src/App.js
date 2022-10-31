@@ -15,6 +15,7 @@ import AlertState from "./context/alert/AlertState";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import setAuthToken from "./utils/setAuthToken";
+import PrivateRoute from "./components/routing/PrivateRoute";
 import "./App.css";
 
 axios.defaults.baseURL = 'http://localhost:4000';
@@ -36,7 +37,10 @@ const App = () => {
 							<div className='container'>
 								<Alerts/>
 								<Routes>
-									<Route exact path='/' element={<Home />} />
+									<Route element={<PrivateRoute/>}>
+										<Route exact path='/' element={<Home/>}/>
+									</Route>
+            			{/* <Route exact path='/' element={<PrivateRoute ><Home/></PrivateRoute>}/> */}
 									<Route exact path='/about' element={<About />} />
 									<Route exact path='/register' element={<Register />} />
 									<Route exact path='/login' element={<Login />} />
