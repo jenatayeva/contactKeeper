@@ -4,6 +4,7 @@ import {
 	Routes, // instead of "Switch"
 	Route,
 } from "react-router-dom";
+import axios from 'axios'
 import Navbar from "./components/layout/Navbar";
 import Alerts from "./components/layout/Alerts";
 import Home from "./components/pages/Home";
@@ -16,6 +17,9 @@ import Login from "./components/auth/Login";
 import setAuthToken from "./utils/setAuthToken";
 import "./App.css";
 
+axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+// axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
 
 if(localStorage.token){
 	setAuthToken(localStorage.token)

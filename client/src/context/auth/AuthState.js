@@ -59,7 +59,6 @@ const AuthState = props => {
         type: REGISTER_SUCCESS,
         payload: res.data
       })
-      loadUser()
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
@@ -74,14 +73,13 @@ const AuthState = props => {
         'Content-Type': 'application/json'
       }
     }
+    const body = JSON.stringify(fromData);
     try {
-      const res = await axios.post('/api/auth', fromData, config);
-      console.log('res.data ' + res.data)
+      const res = await axios.post('/api/auth', body, config);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data
       })
-      loadUser()
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,
